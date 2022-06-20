@@ -2,6 +2,8 @@ package com.webdriver.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+
 
 
 public class WebElementsTest {
@@ -38,6 +42,9 @@ public class WebElementsTest {
 		//Valido que o nome escrito é igual ao valor esperado
 		assertEquals("Deveria ter escrito o nome", 
 				"Antônio", textName.getAttribute("value"));
+		
+		assertEquals(true, textName.getText());
+		
 	}
 	
 	@Test
@@ -49,5 +56,29 @@ public class WebElementsTest {
 	
 		assertFalse("Deveria estar desabilitado", textDisplay.isEnabled());
 			
+	}
+	
+	@Test
+	public void testRadioGroup() throws InterruptedException {
+		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));
+		
+		radios.get(1).click();
+		radios.get(2).click();
+		
+		assertTrue(radios.get(2).isSelected());	
+	}
+	
+	@Test
+	public void testRadioGroupDinamic() throws InterruptedException {
+		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));
+		
+		for (WebElement rd : radios) {
+			System.out.println(rd.getAttribute("value"));
+			if (rd.getAttribute("value").equals("Radio 3")){
+				rd.click();
+				break;
+			}				
+		}
+		assertTrue(radios.get(2).isSelected());	
 	}
 }
