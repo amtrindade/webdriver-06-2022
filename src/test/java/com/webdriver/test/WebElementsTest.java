@@ -81,4 +81,22 @@ public class WebElementsTest {
 		}
 		assertTrue(radios.get(2).isSelected());	
 	}
+	
+	@Test
+	public void testCheckBox() throws InterruptedException {
+		List<WebElement> checkboxes = driver.findElements(By.name("chkbox"));
+		
+		for (WebElement check : checkboxes) {
+			if ((check.getAttribute("value").equals("Check 3")) || 
+					(check.getAttribute("value").equals("Check 4"))){				
+				check.click();
+			}						
+		}
+		
+		assertTrue(checkboxes.get(2).isSelected());
+		assertTrue(checkboxes.get(3).isSelected());
+		assertFalse(checkboxes.get(0).isSelected());
+		assertFalse(checkboxes.get(1).isSelected());
+		
+	}
 }
