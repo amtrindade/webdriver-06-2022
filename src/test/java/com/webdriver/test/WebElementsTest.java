@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -145,6 +146,18 @@ public class WebElementsTest {
 		
 		assertEquals("Item 5", listSelected.get(0).getText());
 		assertEquals("Item 9", listSelected.get(1).getText());		
+		
+	}
+	
+	@Test
+	public void testAlert() {
+		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		btnAlert.click();
+		
+		Alert alert = driver.switchTo().alert();	
+		assertEquals("Eu sou um alerta!", alert.getText());
+		alert.accept();
+				
 		
 	}
 }
