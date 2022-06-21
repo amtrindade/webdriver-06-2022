@@ -116,5 +116,35 @@ public class WebElementsTest {
 		assertEquals("item7", valueSelect.getAttribute("value"));
 	}
 	
-	
+	@Test
+	public void testListMultiSelect() throws InterruptedException {
+		WebElement dropMulti = driver.findElement(By.name("multiselectdropdown"));
+		Select selectMulti = new Select(dropMulti);
+		
+		selectMulti.selectByValue("item5");
+		selectMulti.selectByVisibleText("Item 8");
+		selectMulti.selectByVisibleText("Item 9");
+		
+		selectMulti.selectByVisibleText("Item 10");
+		selectMulti.deselectByVisibleText("Item 10");
+		
+		Thread.sleep(3000);
+		List<WebElement> listSelected = selectMulti.getAllSelectedOptions();
+		
+		assertEquals(3, listSelected.size());
+		
+		assertEquals("Item 5", listSelected.get(0).getText());
+		assertEquals("Item 8", listSelected.get(1).getText());
+		assertEquals("Item 9", listSelected.get(2).getText());
+		
+		selectMulti.deselectByVisibleText("Item 8");
+		
+		listSelected = selectMulti.getAllSelectedOptions();
+		
+		assertEquals(2, listSelected.size());
+		
+		assertEquals("Item 5", listSelected.get(0).getText());
+		assertEquals("Item 9", listSelected.get(1).getText());		
+		
+	}
 }
