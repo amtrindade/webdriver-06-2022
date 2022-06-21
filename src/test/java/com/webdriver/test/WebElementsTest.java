@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 
 
@@ -99,4 +100,21 @@ public class WebElementsTest {
 		assertFalse(checkboxes.get(1).isSelected());
 		
 	}
+	
+	@Test
+	public void testListBoxSingle() {
+		WebElement dropSingle = driver.findElement(By.name("dropdownlist"));
+		Select selectSingle = new Select(dropSingle);
+		
+		selectSingle.selectByIndex(0);
+		selectSingle.selectByVisibleText("Item 10");		
+		selectSingle.selectByVisibleText("Item 7");
+		
+		WebElement valueSelect = selectSingle.getFirstSelectedOption(); 
+		
+		assertEquals("Item 7", valueSelect.getText());
+		assertEquals("item7", valueSelect.getAttribute("value"));
+	}
+	
+	
 }
