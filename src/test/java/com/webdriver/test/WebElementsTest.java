@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class WebElementsTest {
 	
-	WebDriver driver;
+	private WebDriver driver;
 
 	@Before
 	public void setUp() throws Exception {
