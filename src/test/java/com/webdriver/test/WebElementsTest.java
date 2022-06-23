@@ -180,4 +180,32 @@ public class WebElementsTest {
 		assertEquals("Feito!", alert.getText());		
 		alert.accept();
 	}
+	
+	@Test
+	public void testIFrame() {
+		//Entra no iframe
+		driver.switchTo().frame("frame1");
+		
+		WebElement tfText =  driver.findElement(By.id("tfiframe"));
+		tfText.sendKeys("Água");
+		
+		assertEquals("Água", tfText.getAttribute("value"));
+		
+		WebElement btnIframe = driver.findElement(By.id("btniframe"));
+		btnIframe.click();
+				
+		Alert alert = driver.switchTo().alert();
+		assertEquals("Click OK!", alert.getText());
+		alert.accept();
+
+		//Volta para origem
+		driver.switchTo().defaultContent();
+		
+		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		btnAlert.click();
+		
+		Alert alert1 = driver.switchTo().alert();
+		assertEquals("Eu sou um alerta!", alert1.getText());
+		
+	}
 }
