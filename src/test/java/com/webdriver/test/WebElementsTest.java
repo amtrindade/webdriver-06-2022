@@ -1,6 +1,8 @@
 package com.webdriver.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -13,9 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-
-
-
 
 public class WebElementsTest {
 	
@@ -154,10 +153,31 @@ public class WebElementsTest {
 		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
 		btnAlert.click();
 		
-		Alert alert = driver.switchTo().alert();	
+		Alert alert = driver.switchTo().alert();
+		
 		assertEquals("Eu sou um alerta!", alert.getText());
 		alert.accept();
-				
+	}
+	
+	@Test
+	public void testPromptOk() throws InterruptedException {
+		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		btnPrompt.click();
 		
+		Alert prompt = driver.switchTo().alert();
+		assertEquals("Digite o ano:", prompt.getText());
+		prompt.accept();
+		
+		Thread.sleep(1000);
+		
+		Alert confirm = driver.switchTo().alert();
+		assertEquals("O ano é ?", confirm.getText());
+		confirm.accept();
+		
+		Thread.sleep(1000);
+		
+		Alert alert = driver.switchTo().alert();
+		assertEquals("Feito!", alert.getText());		
+		alert.accept();
 	}
 }
