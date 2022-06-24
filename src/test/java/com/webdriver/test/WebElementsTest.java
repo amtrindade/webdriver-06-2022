@@ -43,9 +43,7 @@ public class WebElementsTest {
 		//Valido que o nome escrito é igual ao valor esperado
 		assertEquals("Deveria ter escrito o nome", 
 				"Antônio", textName.getAttribute("value"));
-		
-		assertEquals(true, textName.getText());
-		
+	
 	}
 	
 	@Test
