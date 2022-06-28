@@ -5,10 +5,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.webdriver.inter.NegativeInterface;
+import com.webdriver.inter.PositiveInterface;
 
 public class RegularExpressionTest {
 
@@ -27,6 +31,7 @@ public class RegularExpressionTest {
 	}
 	
 	@Test
+	@Category(NegativeInterface.class)
 	public void shouldValidadeteMaskCPF() {
 		WebElement checkDot = driver.findElement(By.id("cbPontos"));
 		checkDot.click();
@@ -43,6 +48,7 @@ public class RegularExpressionTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void shouldValidadeteWithoutMaskCPF() {		
 		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();

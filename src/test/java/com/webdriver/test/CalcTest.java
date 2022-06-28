@@ -7,11 +7,15 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.webdriver.inter.NegativeInterface;
+import com.webdriver.inter.PositiveInterface;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CalcTest {
@@ -39,6 +43,7 @@ public class CalcTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void should1SumValues() throws InterruptedException {
 		Float value1 = 12f;
 		Float value2 = 3.5f;
@@ -56,6 +61,7 @@ public class CalcTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void should2SubtractValues() throws InterruptedException {
 		Float value1 = 20f;
 		Float value2 = 3.5f;
@@ -74,6 +80,7 @@ public class CalcTest {
 	
 	@Ignore("Ajustar arredondamento de valores float")
 	@Test
+	@Category(NegativeInterface.class)
 	public void should3MultiplicationValues() throws InterruptedException {
 		Float value1 = 20f;
 		Float value2 = 3.5f;

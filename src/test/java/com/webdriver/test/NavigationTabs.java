@@ -7,10 +7,14 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.webdriver.inter.NegativeInterface;
+import com.webdriver.inter.PositiveInterface;
 
 public class NavigationTabs {
 
@@ -29,6 +33,7 @@ public class NavigationTabs {
 	}
 	
 	@Test
+	@Category({PositiveInterface.class, NegativeInterface.class})
 	public void testNavigationTabs() throws InterruptedException {
 		
 		assertEquals("Treino Automação de Testes", driver.getTitle());

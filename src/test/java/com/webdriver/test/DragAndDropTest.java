@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+
+import com.webdriver.inter.PositiveInterface;
 
 public class DragAndDropTest {
 
@@ -34,6 +37,7 @@ public class DragAndDropTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void shouldBeDragAndDrop() throws InterruptedException, IOException {
 		WebElement origin = driver.findElement(By.id("draggable"));	
 		WebElement destiny = driver.findElement(By.id("droppable"));		

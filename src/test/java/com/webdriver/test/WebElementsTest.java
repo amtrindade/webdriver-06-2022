@@ -9,12 +9,16 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import com.webdriver.inter.NegativeInterface;
+import com.webdriver.inter.PositiveInterface;
 
 public class WebElementsTest {
 	
@@ -33,6 +37,7 @@ public class WebElementsTest {
 	}
 
 	@Test
+	@Category(NegativeInterface.class)
 	public void testSendName() throws InterruptedException {
 		//Identifica o elemento 
 		WebElement textName = driver.findElement(By.name("txtbox1"));
@@ -47,6 +52,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category(NegativeInterface.class)
 	public void testDisplay() {
 		WebElement textName = driver.findElement(By.name("txtbox1"));
 		WebElement textDisplay = driver.findElement(By.name("txtbox2"));
@@ -58,6 +64,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void testRadioGroup() throws InterruptedException {
 		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));
 		
@@ -68,6 +75,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category(PositiveInterface.class)
 	public void testRadioGroupDinamic() throws InterruptedException {
 		List<WebElement> radios = driver.findElements(By.name("radioGroup1"));
 		
@@ -115,6 +123,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category({PositiveInterface.class, NegativeInterface.class})
 	public void testListMultiSelect() throws InterruptedException {
 		WebElement dropMulti = driver.findElement(By.name("multiselectdropdown"));
 		Select selectMulti = new Select(dropMulti);
@@ -147,6 +156,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category({PositiveInterface.class, NegativeInterface.class})
 	public void testAlert() {
 		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
 		btnAlert.click();
@@ -158,6 +168,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category({PositiveInterface.class, NegativeInterface.class})
 	public void testPromptOk() throws InterruptedException {
 		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
 		btnPrompt.click();
@@ -180,6 +191,7 @@ public class WebElementsTest {
 	}
 	
 	@Test
+	@Category({PositiveInterface.class, NegativeInterface.class})
 	public void testIFrame() {
 		//Entra no iframe
 		driver.switchTo().frame("frame1");
