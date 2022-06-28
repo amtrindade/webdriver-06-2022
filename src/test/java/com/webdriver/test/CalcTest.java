@@ -1,8 +1,8 @@
 package com.webdriver.test;
 
+import static com.webdriver.core.DriverFactory.getDriver;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
@@ -10,36 +10,26 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.webdriver.core.BaseTest;
 import com.webdriver.inter.NegativeInterface;
 import com.webdriver.inter.PositiveInterface;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CalcTest {
+public class CalcTest extends BaseTest {
 
-	private WebDriver driver;
 	private WebElement tfNumber1;
 	private WebElement tfNumber2;
 	private WebElement tfTotal;
-	
 
 	@Before
-	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "/home/antonio/dev/drivers/chromedriver");
-		driver = new ChromeDriver();
-		driver.get("http://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");
+	public void setUp() throws Exception {				
+		getDriver().get("http://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");
 		
-		tfNumber1 = driver.findElement(By.id("number1"));
-		tfNumber2 = driver.findElement(By.id("number2"));
-		tfTotal = driver.findElement(By.id("total"));
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		driver.quit();
+		tfNumber1 = getDriver().findElement(By.id("number1"));
+		tfNumber2 = getDriver().findElement(By.id("number2"));
+		tfTotal = getDriver().findElement(By.id("total"));
 	}
 	
 	@Test
@@ -53,7 +43,7 @@ public class CalcTest {
 		tfNumber1.sendKeys(Float.toString(value1));
 		tfNumber2.sendKeys(Float.toString(value2));
 		
-		WebElement btnSum = driver.findElement(By.id("somar"));
+		WebElement btnSum = getDriver().findElement(By.id("somar"));
 		btnSum.click();
 		
 		Thread.sleep(3000);		
@@ -71,7 +61,7 @@ public class CalcTest {
 		tfNumber1.sendKeys(Float.toString(value1));
 		tfNumber2.sendKeys(Float.toString(value2));
 		
-		WebElement btnSubtract = driver.findElement(By.id("subtrair"));
+		WebElement btnSubtract = getDriver().findElement(By.id("subtrair"));
 		btnSubtract.click();
 		
 		Thread.sleep(3000);	
@@ -90,7 +80,7 @@ public class CalcTest {
 		tfNumber1.sendKeys(Float.toString(value1));
 		tfNumber2.sendKeys(Float.toString(value2));
 		
-		WebElement btnMultiplication = driver.findElement(By.id("multiplicar"));
+		WebElement btnMultiplication = getDriver().findElement(By.id("multiplicar"));
 		btnMultiplication.click();
 		
 		Thread.sleep(3000);	
