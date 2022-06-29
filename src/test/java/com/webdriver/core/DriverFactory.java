@@ -1,5 +1,7 @@
 package com.webdriver.core;
 
+import static org.junit.Assert.fail;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -14,17 +16,18 @@ public class DriverFactory {
 	
 	public static WebDriver getDriver() {
 		
-		String browser = "firefox-headless";
+		String browser = GlobalProperty.getProperty("webdriver.browser");
+		String path = GlobalProperty.getProperty("webdriver.path");
 		
 		if (driver == null) {
 			
 			if (browser.equals("chrome")) {
-				System.setProperty("webdriver.chrome.driver", "/home/antonio/dev/drivers/chromedriver");
+				System.setProperty("webdriver.chrome.driver", path + "chromedriver");
 				driver = new ChromeDriver();
 			}
 			
-			if (browser.equals("chrome-headless")) {
-				System.setProperty("webdriver.chrome.driver", "/home/antonio/dev/drivers/chromedriver");
+			else if (browser.equals("chrome-headless")) {
+				System.setProperty("webdriver.chrome.driver", path + "chromedriver");
 				
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
@@ -33,13 +36,13 @@ public class DriverFactory {
 				driver = new ChromeDriver(options);
 			}
 			
-			if (browser.equals("firefox")) {
-				System.setProperty("webdriver.gecko.driver", "/home/antonio/dev/drivers/geckodriver");
+			else if (browser.equals("firefox")) {
+				System.setProperty("webdriver.gecko.driver", path + "geckodriver");
 				driver = new FirefoxDriver();
 			}
 			
-			if (browser.equals("firefox-headless")) {
-				System.setProperty("webdriver.gecko.driver", "/home/antonio/dev/drivers/geckodriver");
+			else if (browser.equals("firefox-headless")) {
+				System.setProperty("webdriver.gecko.driver", path + "geckodriver");
 				
 				FirefoxOptions options = new FirefoxOptions();
 				options.addArguments("--headless");
@@ -47,6 +50,8 @@ public class DriverFactory {
 				
 				driver = new FirefoxDriver(options);
 			}
+			else
+				fail("Driver não foi especificado de acordo com as possibilidades!");
 			
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}		
