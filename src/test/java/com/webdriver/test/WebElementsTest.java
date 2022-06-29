@@ -125,7 +125,6 @@ public class WebElementsTest extends BaseTest{
 		selectMulti.selectByVisibleText("Item 10");
 		selectMulti.deselectByVisibleText("Item 10");
 		
-		Thread.sleep(3000);
 		List<WebElement> listSelected = selectMulti.getAllSelectedOptions();
 		
 		assertEquals(3, listSelected.size());
@@ -167,13 +166,11 @@ public class WebElementsTest extends BaseTest{
 		assertEquals("Digite o ano:", prompt.getText());
 		prompt.accept();
 		
-		Thread.sleep(1000);
 		
 		Alert confirm = getDriver().switchTo().alert();
 		assertEquals("O ano é ?", confirm.getText());
 		confirm.accept();
 		
-		Thread.sleep(1000);
 		
 		Alert alert = getDriver().switchTo().alert();
 		assertEquals("Feito!", alert.getText());		
@@ -182,7 +179,7 @@ public class WebElementsTest extends BaseTest{
 	
 	@Test
 	@Category({PositiveInterface.class, NegativeInterface.class})
-	public void testIFrame() {
+	public void testIFrame() throws InterruptedException {
 		//Entra no iframe
 		getDriver().switchTo().frame("frame1");
 		
@@ -197,6 +194,8 @@ public class WebElementsTest extends BaseTest{
 		Alert alert = getDriver().switchTo().alert();
 		assertEquals("Click OK!", alert.getText());
 		alert.accept();
+		
+		Thread.sleep(1000);
 
 		//Volta para origem
 		getDriver().switchTo().defaultContent();
