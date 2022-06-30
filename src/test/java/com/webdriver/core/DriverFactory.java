@@ -16,10 +16,10 @@ public class DriverFactory {
 	
 	public static WebDriver getDriver() {
 		
-		String browser = GlobalProperty.getProperty("webdriver.browser");
-		String path = GlobalProperty.getProperty("webdriver.path");
-		
 		if (driver == null) {
+			
+			String browser = GlobalProperty.getProperty("webdriver.browser");
+			String path = GlobalProperty.getProperty("webdriver.path");
 			
 			if (browser.equals("chrome")) {
 				System.setProperty("webdriver.chrome.driver", path + "chromedriver");
