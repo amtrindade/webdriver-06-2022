@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.webdriver.core.BaseTest;
 import com.webdriver.inter.NegativeInterface;
@@ -49,6 +51,32 @@ public class RegularExpressionTest extends BaseTest{
 		System.out.println(cpfValue);
 		
 		assertTrue(cpfValue.matches("^\\d{11}$"));
+	}
+	
+	@Test
+	public void testValidateCnpjWithMask() throws InterruptedException {
+		getDriver().get("https://www.4devs.com.br/gerador_de_cnpj");
+		
+		WebElement checkYes = getDriver().findElement(By.id("pontuacao_sim"));
+		if (!checkYes.isSelected()) {
+			checkYes.click();
+		}
+		
+		WebElement btnGenereateCnpj = getDriver().findElement(By.id("bt_gerar_cnpj"));
+		btnGenereateCnpj.click();
+		
+		
+		WebElement labelCnpj = getDriver().findElement(By.id("texto_cnpj"));
+		
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions
+				.invisibilityOfElementWithText(By.id("texto_cnpj"), "Gerando..."));
+		
+		
+		String cnpj = labelCnpj.getText();
+		System.out.println(cnpj);
+		
+		assertTrue(cnpj.matches("^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$"));
 	}
 
 }

@@ -11,6 +11,8 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.webdriver.core.BaseTest;
 import com.webdriver.inter.NegativeInterface;
@@ -46,7 +48,10 @@ public class CalcTest extends BaseTest {
 		WebElement btnSum = getDriver().findElement(By.id("somar"));
 		btnSum.click();
 		
-		Thread.sleep(3000);		
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions
+				.textToBePresentInElementValue(By.id("total"), Float.toString(total)));
+		
 		assertEquals(Float.toString(total), tfTotal.getAttribute("value"));		
 	}
 	
