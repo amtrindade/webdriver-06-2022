@@ -3,7 +3,6 @@ package com.webdriver.test;
 import static com.webdriver.core.DriverFactory.getDriver;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
@@ -17,14 +16,11 @@ import com.webdriver.inter.PositiveInterface;
 
 public class RegularExpressionTest extends BaseTest{
 
-	@Before
-	public void setUp() throws Exception {
-		getDriver().get("https://www.geradordecpf.org/");		
-	}
-
 	@Test
 	@Category(NegativeInterface.class)
 	public void shouldValidadeteMaskCPF() {
+		getDriver().get("https://www.geradordecpf.org/");
+		
 		WebElement checkDot = getDriver().findElement(By.id("cbPontos"));
 		checkDot.click();
 		
@@ -41,7 +37,9 @@ public class RegularExpressionTest extends BaseTest{
 	
 	@Test
 	@Category(PositiveInterface.class)
-	public void shouldValidadeteWithoutMaskCPF() {		
+	public void shouldValidadeteWithoutMaskCPF() {
+		getDriver().get("https://www.geradordecpf.org/");
+		
 		WebElement btnGerar = getDriver().findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();
 		
