@@ -4,7 +4,7 @@
 
 ### Dependências utilizadas: ###
 * Selenium WebDriver
-* TestNG
+* JUnit
 * Apache POI
 
 ### Pré-requisitos: ###
